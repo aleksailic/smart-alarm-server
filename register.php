@@ -1,6 +1,5 @@
 <?php
-	require('connect.inc.php');
-	require('check.inc.php');
+	require('includes/connect.inc.php');
 
 	session_start();
 
@@ -12,7 +11,7 @@
 		$surname=$_POST["lastname"];
 		$password=$_POST["password"];
 
-		$query = $link->query("INSERT INTO `users` (`email`,`password`,`name`,`surname`) VALUES ('$email','$password','$name','$surname')");
+		$query = $link->query("INSERT INTO `users` (`email`,`password`,`name`,`surname`) VALUES ('$email','$password','$name','$surname')") or terminate(ERR::QUERY_CODE);
 		if($query){
 			$status=1;
 			$_SESSION['email']=$email;
@@ -38,18 +37,18 @@
 	var err=<?php echo $err; ?>;
 	$(document).ready(function(){
 		if(toast){
-			Materialize.toast("Successfully reigstered!",6000);
+			Materialize.toast("Uspešno ste se registrovali!",6000);
 			setTimeout(function(){
-				Materialize.toast("You will be redirected shortly to your dashboard.",6000);
+				Materialize.toast("Uskoro ćete biti prebačeni na administratorski panel.",6000);
 				setTimeout(function(){
 					window.location.replace("dashboard.php");
 				},2500);
 			},500);		
 		}
 		if(err){
-			Materialize.toast("An Error occured!",6000);
+			Materialize.toast("Došlo je do greške!",6000);
 			setTimeout(function(){
-				Materialize.toast("User already registered!",6000);
+				Materialize.toast("Korisnik sa tim podacima je već u bazi.",6000);
 			},500);		
 		}
 	});

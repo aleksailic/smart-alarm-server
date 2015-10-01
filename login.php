@@ -1,13 +1,12 @@
 <?php
-	require('connect.inc.php');
-	require('check.inc.php');
-	require('redirect.inc.php');
+	require('includes/connect.inc.php');
+	require('includes/redirect.inc.php');
 	session_start();
 
 	$err=0;
 	if(check($_POST['email']) && check($_POST['password'])){ //if there is post data
 	   $email=$_POST['email'];$pw=$_POST['password'];
-	   $query = $link->query("SELECT * FROM `users` WHERE `email`='$email' AND `password`='$pw'") or die("ERROR EXECUTING QUERY");
+	   $query = $link->query("SELECT * FROM `users` WHERE `email`='$email' AND `password`='$pw'") or die(ERR::QUERY_CODE);
 	   if($query->num_rows==0){
 	      $err=1;
 	   }else if($query->num_rows==1){ //login successful
@@ -35,7 +34,7 @@
 	var err=<?php echo $err; ?>;
 	$(document).ready(function(){
 		if(err){
-			Materialize.toast("Incorrect login data!",6000);
+			Materialize.toast("Netačni podaci!",6000);
 		}
 	});
 	
