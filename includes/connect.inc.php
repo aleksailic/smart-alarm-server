@@ -7,7 +7,7 @@
 	$mysqli_db='alarm';
 
 
-	$link= new mysqli($mysqli_host,$mysqli_username,$mysqli_password,$mysqli_db) or die("Error connecting to the database");
+	$link= new mysqli($mysqli_host,$mysqli_username,$mysqli_password,$mysqli_db) or terminate(ERR::DB_CONNECT);
 
 	function check(&$var){
 		global $link;

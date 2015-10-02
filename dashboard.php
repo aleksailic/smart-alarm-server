@@ -60,62 +60,25 @@
       </div>
    </div>
    <div class="row" >
-      <div id="pane" class="col s12 m8 l8 z-depth-1 offset-m2 offset-l2" style="padding:0 !important;">
-   	  <ul class="collection" style="border:0; margin:0 !important" >
-         <?php
-            $query = $link->query("SELECT `serials` FROM `users` WHERE `email`='$email'") or terminate(ERR::QUERY_CODE);
-            $obj = getObj($query);
-            $serials=$obj->serials;
-            $serials_arr=array_filter(explode(',',$serials));
+         <div id="pane" class="col s12 m8 l8 z-depth-1 offset-m2 offset-l2" style="padding:0 !important;">
+         	<ul class="collection" style="border:0; margin:0 !important" >
 
-            if(count($serials_arr)==0){
-               echo 'Dodajte vaš prvi SmartAlarm klikom na veliki plus';
-            }else{
-               foreach ($serials_arr as &$value) { // iterate over serials and get board data.
-                  $query = $link->query("SELECT * FROM `boards` WHERE `serial`='$value'") or die("Error accessing boards db with serila provided!");
-                  if($query->num_rows==0){ //Display welcome message
-                     echo $serials;
-                     echo 'Error accessing the board with serial number: '.$value;
-                  }else{
-                        $obj = getObj($query);
-                        echo '<li class="item waves-effect collection-item avatar">';
-                        echo '<img src="img/avatar.png" alt="" class="circle">';
-                        echo '<span class="title">'.$obj->name.'</span>';
-                        echo '<p>'.$obj->location.'<br>'.$obj->serial.'</p>';
-                        echo '<a href="#!" class="secondary-content">';
-                        if((bool)$obj->status){
-                           echo '<div class="status green"></div>'; 
-                        }else{
-                           echo '<div class="status red"></div>';
-                        }
-                        echo '</a></li>';
-                        echo '<li class="collection-item settings">';
-                        if((bool)$obj->status){
-                           echo '<button data-serial="'.$obj->serial.'" class="status_btn waves-effect waves-light btn red">Stop</button> '; 
-                        }else{
-                           echo '<button data-serial="'.$obj->serial.'" class="status_btn waves-effect waves-light btn green">Start</button> ';
-                        }
-                        echo '<button data-serial="'.$obj->serial.'" class="delete_btn waves-effect waves-light btn red">Delete</button></li>';
-                     }
-                  }
-            }
-          ?>
-         </ul>
-         <div class="preloader-wrapper">
-            <div class="spinner-layer spinner-blue-only">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div><div class="gap-patch">
-                <div class="circle"></div>
-              </div><div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
-            </div>
-          </div>
-      </div>
-   	  <div class="col s12 m2 l2 center" style="margin-top:70px;">
-           <a href="#add_modal" class="modal-trigger btn-floating btn-large waves-effect waves-light yellow darken-3"><i class="material-icons">add</i></a>
-   	  </div>
+         	</ul>
+         	<div class="preloader-wrapper">
+         		<div class="spinner-layer spinner-blue-only">
+               	<div class="circle-clipper left">
+               		<div class="circle"></div>
+                	</div><div class="gap-patch">
+                  	<div class="circle"></div>
+                	</div><div class="circle-clipper right">
+                  	<div class="circle"></div>
+                	</div>
+            	</div>
+         	</div>
+         </div>
+   		<div class="col s12 m2 l2 center" style="margin-top:70px;">
+      	   <a href="#add_modal" class="modal-trigger btn-floating btn-large waves-effect waves-light yellow darken-3"><i class="material-icons">add</i></a>
+   		</div>
    	  <!-- Modal Structure -->
    	   <div id="add_modal" class="modal modal-fixed-footer">
    	     <div class="modal-content">
