@@ -62,7 +62,6 @@
    <div class="row" >
          <div id="pane" class="col s12 m8 l8 z-depth-1 offset-m2 offset-l2" style="padding:0 !important;">
          	<ul class="collection" style="border:0; margin:0 !important" >
-
          	</ul>
          	<div class="preloader-wrapper">
          		<div class="spinner-layer spinner-blue-only">

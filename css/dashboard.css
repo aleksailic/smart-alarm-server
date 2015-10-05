@@ -65,3 +65,22 @@ h3{
 	height:1.3em;
 	border-radius: 50%;
 }
+.log{
+	border-radius: 4px;
+	background: #30353A;
+	height:150px;
+	margin-top:15px;
+	overflow-y:auto;
+
+}
+.log p{
+	font-family: Menlo, Monaco, "Consolas", "Courier New", "Courier";
+	box-sizing:border-box;
+	margin:0;
+	padding:10px;
+	font-size: 11pt;
+	color: white;
+}
+.log .timestamp{
+	margin-right:20px;
+}

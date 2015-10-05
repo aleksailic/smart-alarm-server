@@ -1,13 +1,2 @@
-SmartAlarm server
-==============
-
---------------
-
-*This will be Italic*
-
-**This will be Bold**
-
-- This will be a list item
-- This will be a list item
-
-    Add a indent and this will end up as code
+#SmartAlarm Server
+Server koji sadrzi bazu korisnika i SmartAlarm-a i nudi klijentu dashboard kojim moze upravljati istim. Nudi svojevrsan API klijentu kojim mu pristupa, dok korisniku servira intuitivnu, multiplatformsku i interaktivnu web stranicu, izradjenu u material dizajnu, koja omogucava direktnu kontrolu nad bazom tj. klijentskim uredjajem.

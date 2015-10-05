@@ -11,7 +11,7 @@
 
 	function check(&$var){
 		global $link;
-		if(!isset($var) || empty($var)){
+		if(!isset($var)){
 			return false;
 		}else{
 			$var = $link->escape_string($var);

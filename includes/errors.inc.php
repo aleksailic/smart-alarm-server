@@ -1,4 +1,4 @@
-<?php
+<?php 
 	abstract class ERR
 	{
 	    const DB_CONNECT = "ERR_DB_CONNECT";
@@ -13,8 +13,8 @@
 	    const USER_HASSERIAL = "ERR_USER_HASSERIAL";
 	    const BOARD_SERIAL = "ERR_BOARD_SERIAL";
 	}
-	abstract class LOCALE{
-		const SERBIA=array(
+	class LOCALE{
+		public static $SERBIA=array(
 			'ERR_DB_CONNECT' => "Podaci za povezivanje sa bazom su netacni",
 			'ERR_QUERY_CODE' => "Greska u izvrsivanju upita",
 			'ERR_QUERY_NORESULT' => "Nema podataka u bazi",
@@ -36,7 +36,7 @@
 			foreach ($args as $arg) {
 				array_push($errors, array(
 					'code'=>$arg,
-					'message'=>LOCALE::SERBIA[$arg]
+					'message'=>LOCALE::$SERBIA[$arg]
 				));
 			}
 		}

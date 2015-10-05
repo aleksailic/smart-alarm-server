@@ -20,6 +20,8 @@ $(document).ready(function() {
 		}).done(function(msg) {
 			var html="";
 		    if (msg.status) {
+		    	if(msg.boards.length==0)
+		    		Materialize.toast("Klikom na plus dodajte vas prvi SmartAlarm",3000);
 		    	for(var i=0;i<msg.boards.length;i++){
 		    		var board = msg.boards[i];
 		    		console.log(board);
@@ -33,11 +35,12 @@ $(document).ready(function() {
 		    			});
 		    			$(".status_btn").click(toggleStatus);
 		    			$(".delete_btn").click(deleteBoard);
+		    			$(".log_btn").click(updateLog);
 
 		    		});
 		    	});
 		    } else {
-		       toastArray(msg.errors);
+		       Materialize.toastArray(msg.errors);
 		    }
 		});
 	})();
@@ -83,7 +86,7 @@ $(document).ready(function() {
                 Materialize.toast("Board successfully added.", 3000);
                 Materialize.toast("Please refresh the page.", 3000);
             } else {
-                toastArray(msg.errors);
+                Materialize.toastArray(msg.errors);
             }
 
             $('.preloader-wrapper').removeClass('active');
@@ -112,7 +115,7 @@ function deleteBoard(){
 	        });
 
 	    } else {
-	       toastArray(msg.errors);
+	       Materialize.toastArray(msg.errors);
 	    }
 	});
 }
@@ -143,7 +146,37 @@ function toggleStatus(){
 	        	}
 	        })($that);
 	    } else {
-	       toastArray(msg.errors);
+	       Materialize.toastArray(msg.errors);
+	    }
+	});
+}
+function updateLog(serial){
+	var serial = $(this).data('serial');
+	var $that = $(this);
+	$.ajax({
+	    method: "GET",
+	    url: "board_control.php",
+	    data: {
+	       serial: serial,
+	       action: 'getLog'
+	    }
+	}).done(function(msg) {
+	    if (msg.status) {
+	        Materialize.toast("Successfully refreshed", 3000);
+	        console.log(msg.logs);
+	        var html="";
+	        for(var i=0;i<msg.logs.length;i++){
+	        	html +='<p><span class="timestamp">';
+	        	html += msg.logs[i].timestamp;
+	        	html += '</span><span class="message">';
+	        	html += msg.logs[i].message;
+	        	html += '</span></p>';
+	        }
+	        console.log(html);
+	        $that.next().next().html(html);
+
+	    } else {
+	        Materialize.toastArray(msg.errors);
 	    }
 	});
 }
@@ -166,13 +199,16 @@ function getHTML(board){
 	}else{
 	   html += '<button data-serial="' + board.serial + '" class="status_btn waves-effect waves-light btn green">Start</button> ';
 	}
-	html += '<button data-serial="' + board.serial + '" class="waves-effect waves-light btn blue">Calibrate</button> ';
-	html += '<button data-serial="' + board.serial + '" class="waves-effect waves-light btn blue">Log</button> ';
-	html += '<button data-serial="' + board.serial + '" class="delete_btn waves-effect waves-light btn red">Delete</button></li>';
-
+	html += '<button data-serial="' + board.serial + '" class="waves-effect waves-light btn indigo">Calibrate</button> ';
+	html += '<button data-serial="' + board.serial + '" class="log_btn waves-effect waves-light btn indigo">Refresh Log</button> ';
+	html += '<button data-serial="' + board.serial + '" class="delete_btn waves-effect waves-light btn red">Delete</button>';
+	html += '<div class="log">';
+		//html += '<p><span class="timestamp">2015-09-30 20:31:25</span><span class="message">Successfully started</span></p>';
+	html += '</div></li>';
 	return html;
 }
-function toastArray(arr){
+
+Materialize.toastArray=function(arr){
 	for(var i=0;i<arr.length;i++){
 		Materialize.toast(arr[i].code+": "+arr[i].message,5000);
 	}
