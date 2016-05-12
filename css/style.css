@@ -5,7 +5,9 @@
  *
  * Made By MaterializeCSS.com
  */
-
+.astrip{
+  color:#212121 !important; font-style:italic;
+}
 nav ul a,
 nav .brand-logo {
   color: #444;

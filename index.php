@@ -11,6 +11,7 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+  <a href="https://github.com/aleksailic"><img style="position: absolute; top: 0; left: 0; border: 0; z-index:5;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo"><img src="img/logo.png"</a>
@@ -23,7 +24,7 @@
         <li><a href="login.php">Login</a></li>
         <li><a href="#">Help</a></li>
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a style="float:right;" href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 
@@ -33,10 +34,10 @@
         <br><br>
         <h1 class="header center red-text text-lighten-1">Smart Alarm</h1>
         <div class="row center">
-          <h5 class="header col s12 light">Uređaj za praćenje sna vašeg mladunčeta.</h5>
+          <h5 class="header col s12 light">Sistem za monitoring zvuka</h5>
         </div>
         <div class="row center">
-          <a href="#!" id="download-button" class="btn-large waves-effect waves-light red lighten-1">Get Started</a>
+          <a href="rad.pdf" id="download-button" class="btn-large waves-effect waves-light red lighten-1">Preuzmi rad</a>
         </div>
         <br><br>
 
@@ -48,33 +49,40 @@
 
   <div class="container">
     <div class="section">
-
+      <div class="row">
+        <div class="col s12">
+          <h4 class="center">O uređaju</h4>
+          <p>SmartAlarm jeste uređaj koji vrši monitoring zvuka i na osnovu analize trajanja njegove jačine, donosi odluku o promeni stanja, nakon čega preko servisa PushBullet obaveštava korisnika putem notifikacije na mobilnom telefonu ili desktop računaru. Ukoliko korisnik ne želi da koristi ovaj servis (za koji je neophodna besplatna apikacija), njemu će umesto notifikacije biti prosleđen mail. Uređaj je povezan sa centralnim web serverom koji pruža korisniku, kako direktnu kontrolu nad njim, tako i mogućnost analize poruka koje on odašilje. Svaki uređaj poseduje jedinstveni serijski broj, pa jedan korisnik može da poseduje više uređaja i da ih nesmetano koristi.
+          <p>Ovaj rad je osvojio drugu nagradu u kategoriji radova sa najboljom prakticnom realizacijom na 8. međunarodnoj IEEESTEC konferenciji održanoj novembra 2015. godine u Nišu. <a href="http://ieee.elfak.ni.ac.rs/">Link</a>
+        </div>
+      </div>
       <!--   Icon Section   -->
       <div class="row">
+        <h4 class="center">Princip rada</h4>
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Brži nego ikad</h5>
+            <h2 class="center brown-text"><img src="img/server.jpg" height="70"></h2>
+            <h5 class="center">Server</h5>
 
-            <p class="light">Potrudili smo se da učinimo naš proizvod brzim i efikasnim i time Vama omogućili bezbrižno uživanje dok vaše dete spava jer možete biti sigurni da će informacija o buđenju dospeti brže nego ikad.</p>
+            <p class="light">Centralni web server, napisan u PHP-u i povezan sa MySQL bazom podataka nudi svojevrstan API alarmu koji mu pristupa dok korisniku omogućava kontrolu nad SmartAlarmom preko administratorskog panela.</p>
           </div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">Porodica na prvom mestu</h5>
+            <h2 class="center brown-text"><img src="img/dashboard.jpg" height="70"></h2>
+            <h5 class="center">Admin panel</h5>
 
-            <p class="light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio dolorum vitae dolores debitis consequuntur, omnis corporis non praesentium ullam iste possimus delectus, asperiores laboriosam placeat ducimus minima molestias eos illum!</p>
+            <p class="light">Administratorski panel pruža korisniku direktan uvid u stanje uređaja u realnom vremenu, a pritom mu omogućava da njime i upravlja. Izrađen u stilu Google-ovog <a class="astrip" href="https://www.google.com/design/spec/material-design/introduction.html">Material</a> dizajna, pruža fluidan interfejs na svim platformama.</p>
           </div>
         </div>
 
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Lak za korišćenje</h5>
+            <h2 class="center brown-text"><img src="img/client.jpg" height="70"></h2>
+            <h5 class="center">SmartAlarm Klijent</h5>
 
-            <p class="light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum dolores, ducimus, officia nulla excepturi incidunt recusandae aperiam eum! Id provident, debitis, eos voluptatem minima iure nobis aperiam eligendi, laborum officiis maiores quis sequi beatae nesciunt aliquid. Veritatis blanditiis ipsa cumque.</p>
+            <p class="light">Kada SmartAlarm zaključi da je nivo zvuka kontinuirano viši od prosleđenog parametra, prosleđuje tu informaciju serveru i servisu <a class="astrip" href="http://www.pushbullet.com">PushBullet</a>, koji potom istu prosleđuje u vidu notifikacije ili putem elektronske pošte svim korisnicima.</p>
           </div>
         </div>
       </div>
@@ -87,71 +95,41 @@
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
-          <h5 class="header col s12 dark">U sigurnim ste rukama</h5>
+          <h5 class="header col s12 dark">8th IEEESTEC Conference</h5>
         </div>
       </div>
     </div>
-    <div  class="parallax"><img src="img/background2.jpg" alt="Unsplashed background img 2"></div>
+    <div  class="parallax"><img class="responsive-img" src="img\konferencija\P1160390.jpg" alt="Unsplashed background img 2"></div>
   </div>
 
   <div class="container">
-    <div class="section">
-
-      <div class="row">
-        <div class="col s12 center">
-          <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Contact Us</h4>
-          <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+      <div class="section">
+        <div class="row">
+          <div class="col s12 center">
+            <br><h4>Slike sa konferencije</h4><br>
+          </div>
         </div>
-      </div>
-
-    </div>
-  </div>
-
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">Moderna stvar za bezbrižan san</h5>
+        <div class="row">
+          <div class="col s12 center">
+             <div class="row">
+               <div style="padding: 8px 8px 0" class="col s12 m6 l4"><img class="responsive-img" src="img\konferencija\ASC_2821.jpg"></div>
+               <div style="padding: 8px 8px 0" class="col s12 m6 l4"><img class="responsive-img" src="img\konferencija\ASC_2866.jpg"></div>
+               <div style="padding: 8px 8px 0" class="col s12 m6 l4"><img class="responsive-img" src="img\konferencija\ASC_2825.jpg"></div>
+               <div style="padding: 8px 8px 0" class="col s12 m6 l4"><img class="responsive-img" src="img\konferencija\ASC_3052.jpg"></div>
+               <div style="padding: 8px 8px 0" class="col s12 m6 l4"><img class="responsive-img" src="img\konferencija\ASC_3053.jpg"></div>
+               <div style="padding: 8px 8px 0" class="col s12 m6 l4"><img class="responsive-img" src="img\konferencija\ASC_2906.jpg"></div>
+             </div>
+                       
+          </div>
         </div>
+
       </div>
     </div>
-    <div class="parallax"><img src="img/background3.jpg" alt="Unsplashed background img 3"></div>
-  </div>
 
   <footer class="page-footer teal">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">O Nama</h5>
-          <p class="grey-text text-lighten-4">Mi smo visoko kvalifikovani stručni tim koji radi na usavršavanju tehnologije za bebe. Ovaj proizvod je rezultat višegodišnjeg istraživanja za vreme našeg boravka na prestižnom univerzitetu MIT.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Aleksa Ilić</a>
+      ©2015 <a class="brown-text text-lighten-3" href="http://aleksa.think.in.rs">Aleksa Ilić</a>. Posetite moju web prezentaciju klikom na moje ime ukoliko želite da se informišete o mom dosadašnjem radu.
       </div>
     </div>
   </footer>

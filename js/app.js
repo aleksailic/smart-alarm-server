@@ -1,3 +1,9 @@
+$.fn.once = function(a, b) {
+    return this.each(function() {
+        $(this).off(a).on(a,b);
+    });
+};
+
 $(document).ready(function() {
 	var preloader={
 		id:$('.preloader-wrapper'),
@@ -25,18 +31,13 @@ $(document).ready(function() {
 		    	for(var i=0;i<msg.boards.length;i++){
 		    		var board = msg.boards[i];
 		    		console.log(board);
+		    		bindLog(msg.boards[i].serial);
 		    		html+=getHTML(board);
 		    	}
 		    	$('#pane .collection').hide(function(){
 		    		$(this).html(html).slideDown(function(){
 		    			preloader.stop();
-		    			$('#pane .item').click(function() {
-		    			    $(this).next().slideToggle();
-		    			});
-		    			$(".status_btn").click(toggleStatus);
-		    			$(".delete_btn").click(deleteBoard);
-		    			$(".log_btn").click(updateLog);
-
+		    			initHandlers();
 		    		});
 		    	});
 		    } else {
@@ -57,6 +58,13 @@ $(document).ready(function() {
     $('#addform_btn').click(function() {
         //Check if any field is empty
         var errors = 0;
+        var board={
+        	name: $("#name").val(),
+        	serial: $("#serial").val(),
+        	location: $("#location").val(),
+        	sensitivity: $("#sensitivity").val(),
+        	status: $("#status").is(':checked')
+        };
         $("#addform :input").map(function() {
             if (!$(this).val()) {
                 $(this).parents('td').addClass('warning');
@@ -66,33 +74,43 @@ $(document).ready(function() {
             }
         });
         if (errors > 0) {
-            Materialize.toast("All fields are required",3000);
+            Materialize.toast("Niste popunili valjano sva polja.",3000);
             return false;
         }
         //AJAX call
+        preloader.start();
         $.ajax({
             method: "POST",
             url: "user_control.php",
             data: {
             	action:'addBoard',
-               name: $("#name").val(),
-               serial: $("#serial").val(),
-               location: $("#location").val(),
-               sensitivity: $("#sensitivity").val(),
-               status: $("#status").is(':checked')
+            	name: board.name,
+            	serial: board.serial,
+            	location: board.location,
+            	sensitivity: board.sensitivity,
+            	status: board.status
             }
         }).done(function(msg) {
             if (msg.status) {
-                Materialize.toast("Board successfully added.", 3000);
-                Materialize.toast("Please refresh the page.", 3000);
+                Materialize.toast("Uređaj uspešno dodat.", 3000);
+                $('#pane .collection').append(getHTML(board));
+                initHandlers();
+                bindLog(board.serial);
             } else {
                 Materialize.toastArray(msg.errors);
             }
-
-            $('.preloader-wrapper').removeClass('active');
+            preloader.stop();
         });
     });
 });
+function initHandlers(){
+	$('#pane .item').once('click',function() {
+	    $(this).next().slideToggle();
+	});
+	$(".status_btn").once('click',toggleStatus);
+	$(".delete_btn").once('click',deleteBoard);
+	$(".log_btn").once('click',updateLog);
+}
 function deleteBoard(){
 	var serial = $(this).data('serial');
 	var that = this;
@@ -105,7 +123,7 @@ function deleteBoard(){
 	    }
 	}).done(function(msg) {
 	    if (msg.status) {
-	        Materialize.toast("Successfully deleted the board", 3000);
+	        Materialize.toast("Uređaj uspešno obrisan.", 3000);
 
 	        $(that).parent().prev().slideUp(function() {
 	            $(this).remove();
@@ -150,6 +168,11 @@ function toggleStatus(){
 	    }
 	});
 }
+function bindLog(serial){
+	/*setInterval(function(){
+		$('.log_btn[data-serial='+serial).click();
+	},1000);*/
+}
 function updateLog(serial){
 	var serial = $(this).data('serial');
 	var $that = $(this);
@@ -162,7 +185,7 @@ function updateLog(serial){
 	    }
 	}).done(function(msg) {
 	    if (msg.status) {
-	        Materialize.toast("Successfully refreshed", 3000);
+	    	Materialize.toast("Successfully refreshed")
 	        console.log(msg.logs);
 	        var html="";
 	        for(var i=0;i<msg.logs.length;i++){

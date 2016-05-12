@@ -78,6 +78,7 @@
    		<div class="col s12 m2 l2 center" style="margin-top:70px;">
       	   <a href="#add_modal" class="modal-trigger btn-floating btn-large waves-effect waves-light yellow darken-3"><i class="material-icons">add</i></a>
    		</div>
+
    	  <!-- Modal Structure -->
    	   <div id="add_modal" class="modal modal-fixed-footer">
    	     <div class="modal-content">
@@ -125,6 +126,17 @@
    	       <a href="#!" id="addform_btn" class="modal-action waves-effect waves-green btn-flat ">Add</a>
    	     </div>
    	   </div>
+         <div id="calibrate_modal" class="modal">
+           <div class="modal-content">
+             <h4>Calibrate</h4>
+
+             
+           </div>
+           <div class="modal-footer">
+             <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</a>
+             <a href="#!" id="addform_btn" class="modal-action waves-effect waves-green btn-flat ">Add</a>
+           </div>
+         </div>
    </div>
 </body>
 </html>
