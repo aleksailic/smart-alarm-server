@@ -52,8 +52,8 @@
       <div class="row">
         <div class="col s12">
           <h4 class="center">O uređaju</h4>
-          <p>SmartAlarm jeste uređaj koji vrši monitoring zvuka i na osnovu analize trajanja njegove jačine, donosi odluku o promeni stanja, nakon čega preko servisa PushBullet obaveštava korisnika putem notifikacije na mobilnom telefonu ili desktop računaru. Ukoliko korisnik ne želi da koristi ovaj servis (za koji je neophodna besplatna apikacija), njemu će umesto notifikacije biti prosleđen mail. Uređaj je povezan sa centralnim web serverom koji pruža korisniku, kako direktnu kontrolu nad njim, tako i mogućnost analize poruka koje on odašilje. Svaki uređaj poseduje jedinstveni serijski broj, pa jedan korisnik može da poseduje više uređaja i da ih nesmetano koristi.
-          <p>Ovaj rad je osvojio drugu nagradu u kategoriji radova sa najboljom prakticnom realizacijom na 8. međunarodnoj IEEESTEC konferenciji održanoj novembra 2015. godine u Nišu. <a href="http://ieee.elfak.ni.ac.rs/">Link</a>
+          <p class="light">SmartAlarm jeste uređaj koji vrši monitoring zvuka i na osnovu analize trajanja njegove jačine, donosi odluku o promeni stanja, nakon čega preko servisa PushBullet obaveštava korisnika putem notifikacije na mobilnom telefonu ili desktop računaru. Ukoliko korisnik ne želi da koristi ovaj servis (za koji je neophodna besplatna apikacija), njemu će umesto notifikacije biti prosleđen mail. Uređaj je povezan sa centralnim web serverom koji pruža korisniku, kako direktnu kontrolu nad njim, tako i mogućnost analize poruka koje on odašilje. Svaki uređaj poseduje jedinstveni serijski broj, pa jedan korisnik može da poseduje više uređaja i da ih nesmetano koristi.
+          <p class="light">Ovaj rad je osvojio drugu nagradu u kategoriji radova sa najboljom prakticnom realizacijom na 8. međunarodnoj IEEESTEC konferenciji održanoj novembra 2015. godine u Nišu. <a href="http://ieee.elfak.ni.ac.rs/">Link</a>
         </div>
       </div>
       <!--   Icon Section   -->
